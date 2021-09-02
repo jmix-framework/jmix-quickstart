@@ -25,8 +25,8 @@
                 caption="msg:///actions.Close"
                 icon="EDITOR_CANCEL"/>
     </actions>
-    <dialogMode height="600"
-                width="800"/>
+    <dialogMode height="AUTO"
+                width="AUTO"/>
     <layout spacing="true" expand="editActions">
         <form id="form" dataContainer="taskDc">
             <column width="350px">

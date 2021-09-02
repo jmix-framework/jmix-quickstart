@@ -1,11 +1,14 @@
 package com.company.jmixpm.entity;
 
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.metamodel.annotation.DependsOnProperties;
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import io.jmix.core.metamodel.annotation.JmixProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 @JmixEntity
@@ -82,5 +85,25 @@ public class Task {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    @Transient
+    @JmixProperty
+    @DependsOnProperties({"startDate", "estimatedEfforts"})
+    public LocalDateTime getEndDate() {
+        if (startDate == null) {
+            return null;
+        }
+
+        int minutes = estimatedEfforts != null ? estimatedEfforts * 60 : 30;
+
+        return startDate.plus(minutes, ChronoUnit.MINUTES);
+    }
+
+    @DependsOnProperties({"project", "name"})
+    @Transient
+    @JmixProperty
+    public String getCaption() {
+        return String.format("[%s] %s", project.getName(), name);
     }
 }
