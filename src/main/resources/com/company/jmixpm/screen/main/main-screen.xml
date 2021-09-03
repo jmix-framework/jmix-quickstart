@@ -11,10 +11,7 @@
             </loader>
         </collection>
         <collection id="tasksDc" class="com.company.jmixpm.entity.Task">
-            <fetchPlan extends="_base">
-                <property name="assignee" fetchPlan="_base"/>
-                <property name="project" fetchPlan="_base"/>
-            </fetchPlan>
+            <fetchPlan extends="_base"/>
             <loader id="tasksDl">
                 <query>
                     <![CDATA[select e from Task_ e]]>
@@ -74,7 +71,7 @@
                       height="100%">
                 <initialLayout spacing="true" margin="true" expand="tasksCalendar">
                     <hbox id="topBox" expand="welcomeBox" width="100%">
-                        <form id="scheduleForm">
+                        <form id="form">
                             <column width="400px">
                                 <entityComboBox id="projectSelector"
                                                 caption="msg://projectSelector.caption"
