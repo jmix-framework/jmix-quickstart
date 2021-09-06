@@ -104,6 +104,12 @@ public class Task {
     @Transient
     @JmixProperty
     public String getCaption() {
-        return String.format("[%s] %s", project.getName(), name);
+        StringBuilder sb = new StringBuilder();
+        if (project != null) {
+            sb.append("[").append(project.getName()).append("] ");
+        }
+        sb.append(name);
+
+        return sb.toString();
     }
 }
