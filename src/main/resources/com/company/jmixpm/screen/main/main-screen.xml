@@ -21,7 +21,7 @@
     </data>
 
     <actions>
-        <action id="addTask" caption="msg://addTaskAction.caption" icon="PLUS" primary="true"/>
+        <action id="addTask" caption="msg://addTaskAction.caption" icon="PLUS"/>
         <action id="refresh" caption="msg://refreshAction.caption" icon="REFRESH"/>
     </actions>
 
@@ -83,7 +83,7 @@
                                            caption="msg://dateSelector.caption"
                                            datatype="localDateTime"/>
                                 <hbox spacing="true" width="AUTO">
-                                    <button id="addTaskBtn" action="addTask"/>
+                                    <button id="addTaskBtn" action="addTask" primary="true"/>
                                     <button id="refreshBtn" action="refresh"/>
                                 </hbox>
                             </column>
