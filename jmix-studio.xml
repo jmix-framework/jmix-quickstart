@@ -19,7 +19,7 @@
           </option>
         </ModuleSettings>
       </entry>
-      <entry key="jmix-pm.main">
+      <entry key="jmix-pm-security-basics.main">
         <ModuleSettings>
           <option name="dataStoreOptions">
             <map>

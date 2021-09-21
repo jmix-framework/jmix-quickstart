@@ -1,4 +1,4 @@
-# Quick Start Sample Project
+# Jmix Security Basics
 
-This project is used in the [Quick Start](https://www.jmix.io/learn/quickstart/studio/) video for Jmix. 
+This project is used in the [Security Basics](https://www.jmix.io/) video for Jmix. 
 
