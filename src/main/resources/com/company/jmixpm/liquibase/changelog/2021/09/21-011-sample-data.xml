@@ -83,7 +83,7 @@
     <changeSet id="4" author="jmixpmsecuritybasics">
         <insert tableName="DOCUMENT">
             <column name="ID" value="bf265c25-0cb7-1609-ca8c-d296a489642a"/>
-            <column name="CREATED_BY" value="alex"/>
+            <column name="CREATED_BY" value="peter"/>
             <column name="CREATED_DATE" value="2021-09-22 12:37:00"/>
             <column name="PROJECT_ID" value="03f8a845-0e9f-7266-1bfe-a435d6806eda"/>
             <column name="FILE_" value="fs://2021/09/22/22a488c4-443c-b8c0-9a43-e8f27cf172e8.log?name=draft.txt"/>
