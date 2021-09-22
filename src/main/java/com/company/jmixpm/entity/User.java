@@ -22,7 +22,7 @@ import java.util.UUID;
 public class User implements JmixUserDetails {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false)
     @JmixGeneratedValue
     private UUID id;
 
