@@ -20,6 +20,11 @@
                       align="MIDDLE_CENTER"
                       spacing="true"
                       stylename="jmix-login-title">
+                    <image id="logo" height="60px" width="60px" scaleMode="SCALE_DOWN">
+                        <resource>
+                            <classpath path="com/company/jmixpm/screen/login/pm-logo.jpg"/>
+                        </resource>
+                    </image>
                     <label id="welcomeLabel"
                            align="MIDDLE_LEFT"
                            stylename="jmix-login-caption"
