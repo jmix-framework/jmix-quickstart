@@ -53,6 +53,7 @@
                 <column id="lastName"/>
                 <column id="email"/>
                 <column id="active"/>
+                <column id="salary"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
