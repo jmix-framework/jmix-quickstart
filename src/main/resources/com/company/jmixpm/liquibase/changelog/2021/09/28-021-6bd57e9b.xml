@@ -7,7 +7,7 @@
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
     <changeSet id="1" author="jmixpmsecuritybasics">
         <addColumn tableName="USER_">
-            <column name="SALARY" type="DECIMAL(19, 2)"/>
+            <column name="ADDRESS" type="VARCHAR(255)"/>
         </addColumn>
     </changeSet>
 </databaseChangeLog>

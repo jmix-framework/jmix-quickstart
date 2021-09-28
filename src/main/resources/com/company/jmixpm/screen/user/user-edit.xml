@@ -40,7 +40,7 @@
                 <textField id="lastNameField" property="lastName"/>
                 <textField id="emailField" property="email"/>
                 <checkBox id="activeField" property="active"/>
-                <textField id="salaryField" property="salary"/>
+                <textField id="addressField" property="address"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

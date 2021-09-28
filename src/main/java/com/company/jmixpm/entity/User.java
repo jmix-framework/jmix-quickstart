@@ -10,7 +10,6 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.UUID;
@@ -51,18 +50,18 @@ public class User implements JmixUserDetails {
     @Column(name = "ACTIVE")
     protected Boolean active = true;
 
-    @Column(name = "SALARY", precision = 19, scale = 2)
-    private BigDecimal salary;
+    @Column(name = "ADDRESS")
+    private String address;
 
     @Transient
     protected Collection<? extends GrantedAuthority> authorities;
 
-    public BigDecimal getSalary() {
-        return salary;
+    public String getAddress() {
+        return address;
     }
 
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public UUID getId() {
