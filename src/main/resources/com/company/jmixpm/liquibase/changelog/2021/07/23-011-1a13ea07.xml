@@ -6,7 +6,7 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
 
-    <changeSet id="6" author="jmixpm">
+    <changeSet id="6" author="jmixpm" context="production-data">
 
         <insert tableName="USER_" dbms="postgresql, mssql, hsqldb">
             <column name="ID" value="fca4ba9b-0400-43ed-87cd-a2fa78348980"/>
@@ -55,7 +55,7 @@
     </changeSet>
 
 
-    <changeSet id="10" author="jmixpm">
+    <changeSet id="10" author="jmixpm" context="production-data">
         <insert tableName="PROJECT" dbms="postgresql, mssql, hsqldb">
             <column name="ID" value="c7fbdf82-701d-4579-82ae-76d54effd25d"/>
             <column name="NAME" value="Jmix Education"/>
@@ -72,7 +72,7 @@
     </changeSet>
 
 
-    <changeSet id="11" author="jmixpm">
+    <changeSet id="11" author="jmixpm" context="production-data">
         <insert tableName="TASK_" dbms="postgresql, mssql, hsqldb">
             <column name="ID" value="38317a6d-6f56-42e9-b80e-8a3a6523ff36"/>
             <column name="NAME" value="Prepare quick start video"/>

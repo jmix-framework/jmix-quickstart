@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class UserTest {
+public class UserUnitTest {
 
     @Test
-    @DisplayName("Checks the instance name of the user")
+    @DisplayName("Checks the computation of the instance name")
     void testInstanceName() {
         User user = new User();
         user.setFirstName("Ivan");
