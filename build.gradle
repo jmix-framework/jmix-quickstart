@@ -38,6 +38,7 @@ dependencies {
     implementation 'io.jmix.security:jmix-security-ui-starter'
     implementation 'io.jmix.security:jmix-security-data-starter'
     implementation 'io.jmix.localfs:jmix-localfs-starter'
+    implementation 'io.jmix.graphql:jmix-graphql-starter'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
