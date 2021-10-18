@@ -26,6 +26,9 @@ public class User implements JmixUserDetails {
     @JmixGeneratedValue
     private UUID id;
 
+    @Column(name = "AVATAR")
+    private byte[] avatar;
+
     @Version
     @Column(name = "VERSION", nullable = false)
     private Integer version;
@@ -52,6 +55,14 @@ public class User implements JmixUserDetails {
 
     @Transient
     protected Collection<? extends GrantedAuthority> authorities;
+
+    public byte[] getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(byte[] avatar) {
+        this.avatar = avatar;
+    }
 
     public UUID getId() {
         return id;
