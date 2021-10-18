@@ -14,7 +14,7 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
 repositories {
-    mavenCentral() 
+    mavenCentral()
     maven {
         url 'https://global.repo.jmix.io/repository/public'
     }
@@ -39,6 +39,8 @@ dependencies {
     implementation 'io.jmix.security:jmix-security-data-starter'
     implementation 'io.jmix.localfs:jmix-localfs-starter'
     implementation 'io.jmix.graphql:jmix-graphql-starter'
+    implementation 'io.jmix.rest:jmix-rest-starter'
+    implementation 'io.jmix.security:jmix-security-oauth2-starter'
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
@@ -65,6 +67,11 @@ dependencies {
     // testcontainers
     testImplementation 'org.testcontainers:selenium:1.15.2'
     testImplementation 'org.testcontainers:junit-jupiter:1.15.2'
+
+    testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:11.0.0'
+
+    // gauge
+    testImplementation 'com.thoughtworks.gauge:gauge-java:0.7.15'
 }
 
 test {

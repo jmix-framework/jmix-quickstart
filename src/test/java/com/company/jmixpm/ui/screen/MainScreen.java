@@ -12,4 +12,8 @@ public class MainScreen extends Composite<MainScreen> {
     public ProjectBrowse openProjectBrowse() {
         return sideMenu.openItem(new SideMenu.Menu<>(ProjectBrowse.class, "application", "Project.browse"));
     }
+
+    public TaskBrowse openTaskBrowse() {
+        return sideMenu.openItem(new SideMenu.Menu<>(TaskBrowse.class, "application", "Task_.browse"));
+    }
 }

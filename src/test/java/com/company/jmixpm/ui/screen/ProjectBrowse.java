@@ -1,6 +1,7 @@
 package com.company.jmixpm.ui.screen;
 
 import com.codeborne.selenide.Condition;
+import io.jmix.masquerade.Selectors;
 import io.jmix.masquerade.Wire;
 import io.jmix.masquerade.base.Composite;
 import io.jmix.masquerade.component.Button;
@@ -14,6 +15,8 @@ public class ProjectBrowse extends Composite<ProjectBrowse> {
     private Button createBtn;
     @Wire
     private Table projectsTable;
+    @Wire
+    private Button lookupSelectAction;
 
     public Table getProjectsTable() {
         return projectsTable;
@@ -23,5 +26,13 @@ public class ProjectBrowse extends Composite<ProjectBrowse> {
         createBtn.should(Condition.visible)
                 .click();
         return wire(ProjectEdit.class);
+    }
+
+    public void selectProject(String projectName) {
+        projectsTable.shouldBe(Condition.visible)
+                .selectRow(Selectors.byText(projectName));
+
+        lookupSelectAction.shouldBe(Condition.visible, Condition.enabled)
+                .click();
     }
 }
