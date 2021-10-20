@@ -45,6 +45,7 @@
                         <action id="entityClear" type="entity_clear"/>
                     </actions>
                 </entityPicker>
+                <fileStorageUpload property="attachment" showClearButton="true"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">
