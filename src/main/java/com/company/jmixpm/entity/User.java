@@ -22,7 +22,7 @@ import java.util.UUID;
 public class User implements JmixUserDetails {
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID", nullable = false)
     @JmixGeneratedValue
     private UUID id;
 
@@ -50,8 +50,19 @@ public class User implements JmixUserDetails {
     @Column(name = "ACTIVE")
     protected Boolean active = true;
 
+    @Column(name = "ADDRESS")
+    private String address;
+
     @Transient
     protected Collection<? extends GrantedAuthority> authorities;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public UUID getId() {
         return id;

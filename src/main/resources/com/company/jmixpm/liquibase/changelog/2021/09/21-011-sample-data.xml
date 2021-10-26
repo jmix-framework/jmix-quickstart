@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="jmixpmsecuritybasics">
+        <insert tableName="USER_">
+            <column name="ID" value="c1189f2c-698e-d952-3733-e835d6ced3f7"/>
+            <column name="VERSION" value="1"/>
+            <column name="USERNAME" value="alex"/>
+            <column name="FIRST_NAME" value="Alex"/>
+            <column name="LAST_NAME" value="Hamilton"/>
+            <column name="PASSWORD" value="{noop}alex"/>
+            <column name="ACTIVE" value="true"/>
+        </insert>
+
+        <insert tableName="USER_">
+            <column name="ID" value="bac868c3-63b5-1b1a-97d2-9932d53136be"/>
+            <column name="VERSION" value="1"/>
+            <column name="USERNAME" value="peter"/>
+            <column name="FIRST_NAME" value="Peter"/>
+            <column name="LAST_NAME" value="Johnson"/>
+            <column name="PASSWORD" value="{noop}peter"/>
+            <column name="ACTIVE" value="true"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="2" author="jmixpmsecuritybasics">
+        <insert tableName="PROJECT">
+            <column name="ID" value="03f8a845-0e9f-7266-1bfe-a435d6806eda"/>
+            <column name="NAME" value="Alex's Project"/>
+            <column name="START_DATE" value="2021-08-15"/>
+            <column name="END_DATE" value="2021-09-30"/>
+            <column name="MANAGER_ID" value="c1189f2c-698e-d952-3733-e835d6ced3f7"/>
+        </insert>
+
+        <insert tableName="PROJECT">
+            <column name="ID" value="12630cf3-51b1-b230-24dc-7409382192ba"/>
+            <column name="NAME" value="Peter's Project"/>
+            <column name="START_DATE" value="2021-09-01"/>
+            <column name="END_DATE" value="2021-12-30"/>
+            <column name="MANAGER_ID" value="bac868c3-63b5-1b1a-97d2-9932d53136be"/>
+        </insert>
+
+        <insert tableName="PROJECT">
+            <column name="ID" value="60885987-1b61-4247-94c7-dff348347f93"/>
+            <column name="NAME" value="Admin's Project"/>
+            <column name="START_DATE" value="2021-10-10"/>
+            <column name="END_DATE" value="2021-10-20"/>
+            <column name="MANAGER_ID" value="60885987-1b61-4247-94c7-dff348347f93"/>
+        </insert>
+
+    </changeSet>
+
+    <changeSet id="3" author="jmixpmsecuritybasics">
+        <insert tableName="TASK_">
+            <column name="ID" value="3d5ae4b2-bf98-7b87-6062-59016715f9d9"/>
+            <column name="NAME" value="Prepare draft"/>
+            <column name="ASSIGNEE_ID" value="c1189f2c-698e-d952-3733-e835d6ced3f7"/>
+            <column name="START_DATE" value="2021-08-20"/>
+            <column name="PROJECT_ID" value="03f8a845-0e9f-7266-1bfe-a435d6806eda"/>
+        </insert>
+        <insert tableName="TASK_">
+            <column name="ID" value="4277e299-e45a-4c64-c79f-e54bc59beca7"/>
+            <column name="NAME" value="Make design"/>
+            <column name="ASSIGNEE_ID" value="bac868c3-63b5-1b1a-97d2-9932d53136be"/>
+            <column name="START_DATE" value="2021-08-25"/>
+            <column name="PROJECT_ID" value="03f8a845-0e9f-7266-1bfe-a435d6806eda"/>
+        </insert>
+
+        <insert tableName="TASK_">
+            <column name="ID" value="8bc16b57-d8e7-5fbf-77c3-add2e2809f8a"/>
+            <column name="NAME" value="Write release notes"/>
+            <column name="ASSIGNEE_ID" value="bac868c3-63b5-1b1a-97d2-9932d53136be"/>
+            <column name="START_DATE" value="2021-09-03"/>
+            <column name="PROJECT_ID" value="12630cf3-51b1-b230-24dc-7409382192ba"/>
+        </insert>
+
+    </changeSet>
+
+    <changeSet id="4" author="jmixpmsecuritybasics">
+        <insert tableName="DOCUMENT">
+            <column name="ID" value="bf265c25-0cb7-1609-ca8c-d296a489642a"/>
+            <column name="CREATED_BY" value="peter"/>
+            <column name="CREATED_DATE" value="2021-09-22 12:37:00"/>
+            <column name="PROJECT_ID" value="03f8a845-0e9f-7266-1bfe-a435d6806eda"/>
+            <column name="FILE_" value="fs://2021/09/22/22a488c4-443c-b8c0-9a43-e8f27cf172e8.log?name=draft.txt"/>
+            <column name="NOTES" value="Notes"/>
+        </insert>
+
+        <insert tableName="DOCUMENT">
+            <column name="ID" value="3aafb642-a96b-792c-a655-2b1f214a794e"/>
+            <column name="CREATED_BY" value="alex"/>
+            <column name="CREATED_DATE" value="2021-09-22 13:41:00"/>
+            <column name="PROJECT_ID" value="12630cf3-51b1-b230-24dc-7409382192ba"/>
+            <column name="FILE_" value="fs://2021/08/31/c6119500-67d6-ccdd-5900-1ee8a4e34339.png?name=desc.yml"/>
+            <column name="NOTES" value="ws description"/>
+        </insert>
+
+        <insert tableName="DOCUMENT">
+            <column name="ID" value="5795efb9-bc75-990e-cae1-ad4935bf8901"/>
+            <column name="CREATED_BY" value="peter"/>
+            <column name="CREATED_DATE" value="2021-09-23 11:05:00"/>
+            <column name="PROJECT_ID" value="12630cf3-51b1-b230-24dc-7409382192ba"/>
+            <column name="FILE_" value="fs://2021/09/23/9a99a9d4-d28a-04bd-66b8-cc05652a2a08.xml?name=WeeklyPlan.xlsx"/>
+        </insert>
+
+        <insert tableName="DOCUMENT">
+            <column name="ID" value="5be2e65e-90f6-6c72-647c-1c5279189074"/>
+            <column name="CREATED_BY" value="admin"/>
+            <column name="CREATED_DATE" value="2021-09-05 18:29:00"/>
+            <column name="PROJECT_ID" value="60885987-1b61-4247-94c7-dff348347f93"/>
+            <column name="NOTES" value="Product logo"/>
+        </insert>
+
+    </changeSet>
+
+</databaseChangeLog>
