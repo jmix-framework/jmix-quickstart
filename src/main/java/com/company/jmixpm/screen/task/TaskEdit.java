@@ -1,6 +1,7 @@
 package com.company.jmixpm.screen.task;
 
 import com.company.jmixpm.app.TaskService;
+import com.company.jmixpm.screen.project.ProjectBrowse;
 import io.jmix.ui.screen.*;
 import com.company.jmixpm.entity.Task;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,5 +16,10 @@ public class TaskEdit extends StandardEditor<Task> {
     @Subscribe
     public void onInitEntity(InitEntityEvent<Task> event) {
         event.getEntity().setAssignee(taskService.findLeastBusyUser());
+    }
+
+    @Install(to = "projectField.entityLookup", subject = "screenConfigurer")
+    private void projectFieldEntityLookupScreenConfigurer(Screen screen) {
+        ((ProjectBrowse) screen).setHideArchived(true);
     }
 }

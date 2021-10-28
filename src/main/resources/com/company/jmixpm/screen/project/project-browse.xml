@@ -44,12 +44,14 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="archive" caption="Archive"/>
             </actions>
             <columns>
                 <column id="name"/>
                 <column id="startDate"/>
                 <column id="endDate"/>
                 <column id="manager"/>
+                <column id="archived"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
@@ -57,6 +59,7 @@
                 <button id="createBtn" action="projectsTable.create"/>
                 <button id="editBtn" action="projectsTable.edit"/>
                 <button id="removeBtn" action="projectsTable.remove"/>
+                <button id="archiveBtn" action="projectsTable.archive"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

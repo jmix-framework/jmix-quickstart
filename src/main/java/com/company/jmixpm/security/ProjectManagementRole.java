@@ -1,14 +1,12 @@
 package com.company.jmixpm.security;
 
-import com.company.jmixpm.entity.Document;
-import com.company.jmixpm.entity.Project;
-import com.company.jmixpm.entity.Task;
-import com.company.jmixpm.entity.User;
+import com.company.jmixpm.entity.*;
 import io.jmix.security.model.EntityAttributePolicyAction;
 import io.jmix.security.model.EntityPolicyAction;
 import io.jmix.security.role.annotation.EntityAttributePolicy;
 import io.jmix.security.role.annotation.EntityPolicy;
 import io.jmix.security.role.annotation.ResourceRole;
+import io.jmix.security.role.annotation.SpecificPolicy;
 import io.jmix.securityui.role.annotation.MenuPolicy;
 import io.jmix.securityui.role.annotation.ScreenPolicy;
 
@@ -31,9 +29,16 @@ public interface ProjectManagementRole {
     @EntityPolicy(entityClass = User.class, actions = {EntityPolicyAction.READ, EntityPolicyAction.UPDATE})
     void user();
 
-    @ScreenPolicy(screenIds = {"User.browse", "Project.browse", "Task_.browse", "Document.browse", "Document.edit", "Project.edit", "Task_.edit", "User.edit"})
+    @ScreenPolicy(screenIds = {"User.browse", "Project.browse", "Task_.browse", "Document.browse", "Document.edit", "Project.edit", "Task_.edit", "User.edit", "MyNotifications"}, screenClasses = {})
     void screens();
 
-    @MenuPolicy(menuIds = {"application", "Project.browse", "Task_.browse", "Document.browse", "User.browse"})
+    @MenuPolicy(menuIds = {"application", "Project.browse", "Task_.browse", "Document.browse", "User.browse", "MyNotifications"})
     void commonMenus();
+
+    @SpecificPolicy(resources = "pm.projects.archive")
+    void specify();
+
+    @EntityAttributePolicy(entityClass = Notification.class, attributes = "*", action = EntityAttributePolicyAction.VIEW)
+    @EntityPolicy(entityClass = Notification.class, actions = EntityPolicyAction.READ)
+    void notification();
 }

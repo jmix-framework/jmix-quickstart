@@ -40,6 +40,17 @@ public class Project {
     @OneToMany(mappedBy = "project")
     private List<Task> tasks;
 
+    @Column(name = "ARCHIVED")
+    private Boolean archived = false;
+
+    public Boolean getArchived() {
+        return archived;
+    }
+
+    public void setArchived(Boolean archived) {
+        this.archived = archived;
+    }
+
     public List<Task> getTasks() {
         return tasks;
     }

@@ -1,0 +1,101 @@
+<window xmlns="http://jmix.io/schema/ui/window"
+        xmlns:c="http://jmix.io/schema/ui/jpql-condition"
+        caption="msg://notificationBrowse.caption"
+        focusComponent="table">
+    <data>
+        <collection id="notificationsDc"
+                    class="com.company.jmixpm.entity.Notification">
+            <fetchPlan extends="_base">
+                <property name="sender" fetchPlan="_base"/>
+                <property name="recipient" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="notificationsDl">
+                <query>
+                    <![CDATA[select e from Notification e]]>
+                </query>
+            </loader>
+        </collection>
+        <instance id="notificationDc"
+                  class="com.company.jmixpm.entity.Notification">
+            <fetchPlan extends="_base">
+                <property name="sender" fetchPlan="_base"/>
+                <property name="recipient" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="save" icon="OK" caption="msg:///actions.Ok" shortcut="CTRL-ENTER"/>
+        <action id="cancel" icon="CANCEL" caption="msg:///actions.Cancel" description="Esc"/>
+    </actions>
+    <dialogMode height="600" width="800"/>
+    <layout>
+        <split id="split" height="100%" orientation="horizontal" reversePosition="true" width="100%">
+            <vbox id="lookupBox" expand="table" height="100%" margin="false,true,false,false" spacing="true">
+                <filter id="filter" dataLoader="notificationsDl">
+                    <properties include=".*"/>
+                </filter>
+                <groupTable id="table"
+                            width="100%"
+                            dataContainer="notificationsDc">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                        <action id="exclude" type="exclude"/>
+                        <action id="refresh" type="refresh"/>
+                    </actions>
+                    <columns>
+                        <column id="title"/>
+                        <column id="text"/>
+                        <column id="sender"/>
+                        <column id="recipient"/>
+                        <column id="isRead"/>
+                    </columns>
+                    <simplePagination/>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="createBtn" action="table.create"/>
+                        <button id="editBtn" action="table.edit"/>
+                        <button id="removeBtn" action="table.remove"/>
+                    </buttonsPanel>
+                </groupTable>
+                <hbox id="lookupActions" spacing="true" visible="false">
+                    <button action="lookupSelectAction"/>
+                    <button action="lookupCancelAction"/>
+                </hbox>
+            </vbox>
+            <vbox id="editBox" height="100%" margin="false,false,false,true" expand="fieldGroupBox" spacing="true">
+                <scrollBox id="fieldGroupBox">
+                    <form id="form" dataContainer="notificationDc">
+                        <column width="350px">
+                            <textField id="titleField" property="title"/>
+                            <textArea id="textField" property="text"/>
+                            <entityPicker id="senderField" property="sender">
+                                <actions>
+                                    <action id="entityLookup" type="entity_lookup"/>
+                                    <action id="entityClear" type="entity_clear"/>
+                                </actions>
+                            </entityPicker>
+                            <entityPicker id="recipientField" property="recipient">
+                                <actions>
+                                    <action id="entityLookup" type="entity_lookup"/>
+                                    <action id="entityClear" type="entity_clear"/>
+                                </actions>
+                            </entityPicker>
+                            <checkBox id="isReadField" property="isRead"/>
+                        </column>
+                    </form>
+                </scrollBox>
+                <hbox id="actionsPane" spacing="true" visible="false">
+                    <button id="saveBtn" action="save"/>
+                    <button id="cancelBtn" action="cancel"/>
+                </hbox>
+            </vbox>
+        </split>
+    </layout>
+</window>

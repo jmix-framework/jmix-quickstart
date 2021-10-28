@@ -7,6 +7,10 @@
         <item screen="Project.browse" caption="msg://com.company.jmixpm.screen.project/projectBrowse.menu"/>
         <item screen="Task_.browse" caption="msg://com.company.jmixpm.screen.task/taskBrowse.menu"/>
         <item screen="Document.browse" caption="msg://com.company.jmixpm.screen.document/documentBrowse.menu"/>
+        <item screen="Notification.browse"
+              caption="msg://com.company.jmixpm.screen.notification/notificationBrowse.caption"/>
+        <item screen="MyNotifications"
+              caption="msg://com.company.jmixpm.screen.mynotifications/myNotifications.caption"/>
     </menu>
 
 </menu-config>

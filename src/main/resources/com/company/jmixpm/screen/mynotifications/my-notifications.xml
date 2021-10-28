@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://myNotifications.caption">
+    <data>
+        <collection id="notificationsDc" class="com.company.jmixpm.entity.Notification">
+            <fetchPlan extends="_base">
+            </fetchPlan>
+            <loader id="notificationsDl">
+                <query>
+                    <![CDATA[select e from Notification e
+                        where e.recipient.id = :current_user_id
+                              and e.isRead = false]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <layout>
+        <dataGrid id="notificationsTable" height="300px" width="100%" dataContainer="notificationsDc">
+            <actions>
+                <action id="markAsRead" caption="Mark as Read" trackSelection="true"/>
+            </actions>
+            <buttonsPanel>
+                <button id="markAsReadBtn" action="notificationsTable.markAsRead"/>
+            </buttonsPanel>
+            <columns>
+                <column id="title" property="title"/>
+                <column id="text" property="text"/>
+            </columns>
+        </dataGrid>
+    </layout>
+</window>
