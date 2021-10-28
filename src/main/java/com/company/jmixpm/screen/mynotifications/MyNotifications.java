@@ -1,6 +1,6 @@
 package com.company.jmixpm.screen.mynotifications;
 
-import com.company.jmixpm.NotificationService;
+import com.company.jmixpm.app.NotificationService;
 import com.company.jmixpm.entity.Notification;
 import com.company.jmixpm.entity.User;
 import io.jmix.core.DataManager;

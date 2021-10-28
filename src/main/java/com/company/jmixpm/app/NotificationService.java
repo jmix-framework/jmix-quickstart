@@ -1,15 +1,13 @@
-package com.company.jmixpm;
+package com.company.jmixpm.app;
 
 import com.company.jmixpm.entity.Notification;
 import io.jmix.core.Id;
 import io.jmix.core.UnconstrainedDataManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import java.util.UUID;
 
