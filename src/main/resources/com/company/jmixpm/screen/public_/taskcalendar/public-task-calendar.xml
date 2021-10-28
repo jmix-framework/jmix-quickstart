@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://publicTaskCalendar.caption">
+    <data>
+        <collection id="tasksDc" class="com.company.jmixpm.entity.Task">
+            <fetchPlan extends="_base"/>
+            <loader id="tasksDl">
+                <query>
+                    <![CDATA[select e from Task_ e where e.startDate is not null]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <layout expand="calendar" margin="true">
+        <label stylename="h1" value="Active Tasks"/>
+        <calendar id="calendar" width="100%" dataContainer="tasksDc" startDateProperty="startDate"
+                  captionProperty="name" endDateProperty="startDate" isAllDayProperty="allDay"
+                  navigationButtonsVisible="true" firstVisibleHourOfDay="8" lastVisibleHourOfDay="19"/>
+    </layout>
+</window>

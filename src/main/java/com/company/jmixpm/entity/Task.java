@@ -3,6 +3,7 @@ package com.company.jmixpm.entity;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
+import io.jmix.core.metamodel.annotation.JmixProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -37,6 +38,12 @@ public class Task {
     @JoinColumn(name = "PROJECT_ID", nullable = false)
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Project project;
+
+    @Transient
+    @JmixProperty
+    public Boolean getAllDay() {
+        return true;
+    }
 
     public Project getProject() {
         return project;
