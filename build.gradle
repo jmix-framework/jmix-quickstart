@@ -41,6 +41,8 @@ dependencies {
     }
     implementation "io.jmix.dynattr:jmix-dynattr-starter"
     implementation "io.jmix.dynattr:jmix-dynattr-ui-starter"
+    implementation("io.jmix.email:jmix-email-starter")
+    implementation("io.jmix.email:jmix-email-ui-starter")
 }
 
 test {

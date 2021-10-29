@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://userRegistration.caption">
+    <actions>
+        <action id="register"
+                caption="msg://register"
+                icon="CHECK"
+                shortcut="ENTER"/>
+    </actions>
+
+    <layout stylename="jmix-login-main-layout">
+        <vbox id="loginWrapper" height="100%" width="100%">
+            <vbox id="loginMainBox"
+                  align="MIDDLE_CENTER"
+                  margin="true"
+                  spacing="true"
+                  stylename="jmix-login-panel"
+                  width="AUTO">
+                <hbox id="loginTitleBox"
+                      align="MIDDLE_CENTER"
+                      spacing="true"
+                      stylename="jmix-login-title">
+                    <label id="welcomeLabel"
+                           align="MIDDLE_LEFT"
+                           stylename="jmix-login-caption"
+                           value="msg://registerAsUser"/>
+                </hbox>
+                <vbox id="loginForm"
+                      spacing="true"
+                      stylename="jmix-login-form">
+                    <form stylename="jmix-login-credentials" id="form">
+                        <textField id="emailField" caption="msg://email" required="true" datatype="string">
+                            <validators>
+                                <email/>
+                            </validators>
+                        </textField>
+                        <textField id="firstNameField" caption="msg://com.company.jmixpm.entity/User.firstName"
+                                   required="true" datatype="string"/>
+                        <textField id="lastNameField" caption="msg://com.company.jmixpm.entity/User.lastName"
+                                   required="true" datatype="string"/>
+                    </form>
+                    <button id="registerButton"
+                            align="MIDDLE_CENTER"
+                            action="register"
+                            stylename="jmix-login-submit-button"/>
+                    <linkButton id="backToLogin" caption="msg://alreadyRegistered"/>
+                </vbox>
+            </vbox>
+        </vbox>
+    </layout>
+</window>

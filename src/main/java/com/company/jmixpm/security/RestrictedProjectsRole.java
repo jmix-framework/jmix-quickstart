@@ -8,8 +8,10 @@ import io.jmix.security.model.RowLevelPredicate;
 import io.jmix.security.role.annotation.PredicateRowLevelPolicy;
 import io.jmix.security.role.annotation.RowLevelRole;
 
-@RowLevelRole(name = "Restrict projects for modification", code = "restricted-projects")
+@RowLevelRole(name = "Restrict projects for modification", code = RestrictedProjectsRole.CODE)
 public interface RestrictedProjectsRole {
+    String CODE = "restricted-projects";
+
     @PredicateRowLevelPolicy(entityClass = Project.class,
             actions = {RowLevelPolicyAction.UPDATE, RowLevelPolicyAction.DELETE}
     )

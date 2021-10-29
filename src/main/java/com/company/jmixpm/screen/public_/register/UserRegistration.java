@@ -1,0 +1,104 @@
+package com.company.jmixpm.screen.public_.register;
+
+import com.company.jmixpm.app.RegistrationService;
+import com.company.jmixpm.entity.User;
+import com.company.jmixpm.screen.login.LoginScreen;
+import io.jmix.email.EmailException;
+import io.jmix.ui.Notifications;
+import io.jmix.ui.ScreenBuilders;
+import io.jmix.ui.action.Action;
+import io.jmix.ui.component.*;
+import io.jmix.ui.navigation.Route;
+import io.jmix.ui.screen.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+@UiController("UserRegistration")
+@UiDescriptor("user-registration.xml")
+@Route(value = "register", root = true)
+public class UserRegistration extends Screen {
+
+    @Autowired
+    private ScreenBuilders screenBuilders;
+    @Autowired
+    private ScreenValidation screenValidation;
+    @Autowired
+    private Form form;
+    @Autowired
+    private TextField<String> lastNameField;
+    @Autowired
+    private TextField<String> firstNameField;
+    @Autowired
+    private TextField<String> emailField;
+    @Autowired
+    private RegistrationService registrationService;
+    @Autowired
+    private Notifications notifications;
+    @Autowired
+    private VBoxLayout loginForm;
+    @Autowired
+    private Button registerButton;
+
+    private static final Logger log = LoggerFactory.getLogger(UserRegistration.class);
+
+
+    @Subscribe("backToLogin")
+    public void onBackToLoginClick(Button.ClickEvent event) {
+        screenBuilders.screen(this)
+                .withScreenClass(LoginScreen.class)
+                .withOpenMode(OpenMode.ROOT)
+                .build()
+                .show();
+    }
+
+    @Subscribe("register")
+    public void onRegister(Action.ActionPerformedEvent event) {
+        if (!validateFields()) {
+            return;
+        }
+
+        User user = registrationService.registerNewUser(emailField.getValue(), firstNameField.getValue(), lastNameField.getValue());
+
+        String activationToken = registrationService.generateRandomActivationToken();
+
+        registrationService.saveActivationToken(user, activationToken);
+
+        try {
+            registrationService.sendActivationEmail(user);
+        } catch (EmailException e) {
+            log.error("Error", e);
+            notifications.create(Notifications.NotificationType.ERROR)
+                    .withDescription("Failed to send registration email. Sorry for inconvenience.")
+                    .show();
+            return;
+        }
+
+        notifications.create(Notifications.NotificationType.HUMANIZED)
+                .withDescription("User registered successfully. Check your email inbox.")
+                .show();
+
+        form.setEditable(false);
+        registerButton.setEnabled(false);
+    }
+
+    public boolean validateFields() {
+        ValidationErrors validationErrors = screenValidation.validateUiComponents(form);
+        if (!validationErrors.isEmpty()) {
+            screenValidation.showValidationErrors(this, validationErrors);
+            return false;
+        }
+
+        String email = emailField.getValue();
+
+        if (registrationService.checkUserAlreadyExist(email)) {
+            notifications.create(Notifications.NotificationType.WARNING)
+                    .withDescription("User with this email already exists")
+                    .withPosition(Notifications.Position.MIDDLE_CENTER)
+                    .show();
+            return false;
+        }
+
+        return true;
+    }
+}

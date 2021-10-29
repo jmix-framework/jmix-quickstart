@@ -1,16 +1,15 @@
 package com.company.jmixpm.screen.login;
 
+import com.company.jmixpm.screen.public_.register.UserRegistration;
 import io.jmix.core.MessageTools;
 import io.jmix.core.Messages;
 import io.jmix.securityui.authentication.AuthDetails;
 import io.jmix.securityui.authentication.LoginScreenSupport;
 import io.jmix.ui.JmixApp;
 import io.jmix.ui.Notifications;
+import io.jmix.ui.ScreenBuilders;
 import io.jmix.ui.action.Action;
-import io.jmix.ui.component.CheckBox;
-import io.jmix.ui.component.ComboBox;
-import io.jmix.ui.component.PasswordField;
-import io.jmix.ui.component.TextField;
+import io.jmix.ui.component.*;
 import io.jmix.ui.navigation.Route;
 import io.jmix.ui.screen.*;
 import io.jmix.ui.security.UiLoginProperties;
@@ -55,6 +54,9 @@ public class LoginScreen extends Screen {
 
     @Autowired
     private UiLoginProperties loginProperties;
+
+    @Autowired
+    private ScreenBuilders screenBuilders;
 
     @Autowired
     private JmixApp app;
@@ -117,5 +119,14 @@ public class LoginScreen extends Screen {
                     .withDescription(messages.getMessage(getClass(), "badCredentials"))
                     .show();
         }
+    }
+
+    @Subscribe("registerButton")
+    public void onRegisterButtonClick(Button.ClickEvent event) {
+        screenBuilders.screen(this)
+                .withScreenClass(UserRegistration.class)
+                .withOpenMode(OpenMode.ROOT)
+                .build()
+                .show();
     }
 }

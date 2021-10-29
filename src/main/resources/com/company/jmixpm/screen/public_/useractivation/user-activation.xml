@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://userActivation.caption">
+    <layout stylename="jmix-login-main-layout">
+        <vbox id="loginWrapper" height="100%" width="100%">
+            <vbox id="loginMainBox"
+                  align="MIDDLE_CENTER"
+                  margin="true"
+                  spacing="true"
+                  stylename="jmix-login-panel"
+                  width="AUTO">
+                <hbox id="loginTitleBox"
+                      align="MIDDLE_CENTER"
+                      spacing="true"
+                      stylename="jmix-login-title">
+
+                    <label id="notFoundLabel" value="msg://userNotFound" stylename="failure"/>
+
+                    <label id="welcomeLabel"
+                           align="MIDDLE_LEFT"
+                           stylename="jmix-login-caption"
+                           value="msg://finishActivation"/>
+                </hbox>
+                <linkButton id="returnToLoginScreen" caption="msg://returnToLogin"/>
+                <vbox id="loginForm"
+                      spacing="true"
+                      stylename="jmix-login-form">
+                    <form stylename="jmix-login-credentials" id="form">
+                        <passwordField id="passwordField" required="true" caption="msg://passwordField.caption">
+                            <validators>
+                                <size message="msg://passwordTooShort" min="4"/>
+                            </validators>
+                        </passwordField>
+                    </form>
+                    <button id="activateButton"
+                            icon="font-icon:CHECK"
+                            align="MIDDLE_CENTER"
+                            stylename="jmix-login-submit-button" caption="msg://activateButton.caption"/>
+                </vbox>
+            </vbox>
+        </vbox>
+    </layout>
+</window>

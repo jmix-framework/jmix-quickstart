@@ -61,6 +61,7 @@
                             align="MIDDLE_CENTER"
                             action="submit"
                             stylename="jmix-login-submit-button"/>
+                    <linkButton id="registerButton" caption="msg://register"/>
                 </vbox>
             </vbox>
         </vbox>

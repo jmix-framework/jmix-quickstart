@@ -1,9 +1,10 @@
 package com.company.jmixpm.screen.project;
 
+import com.company.jmixpm.entity.Project;
 import com.company.jmixpm.entity.User;
+import io.jmix.core.DataManager;
 import io.jmix.core.security.CurrentAuthentication;
 import io.jmix.ui.screen.*;
-import com.company.jmixpm.entity.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @UiController("Project.edit")
@@ -12,9 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ProjectEdit extends StandardEditor<Project> {
     @Autowired
     private CurrentAuthentication currentAuthentication;
+    @Autowired
+    private DataManager dataManager;
 
     @Subscribe
     public void onInitEntity(InitEntityEvent<Project> event) {
-        event.getEntity().setManager((User) currentAuthentication.getUser());
+        User user = (User) currentAuthentication.getUser();
+        // todo delete when jmix bug is fixed
+        user = dataManager.load(User.class).id(user.getId()).one();
+
+        event.getEntity().setManager(user);
     }
 }

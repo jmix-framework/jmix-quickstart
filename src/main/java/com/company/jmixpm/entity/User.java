@@ -17,7 +17,8 @@ import java.util.UUID;
 @JmixEntity
 @Entity
 @Table(name = "USER_", indexes = {
-        @Index(name = "IDX_USER__ON_USERNAME", columnList = "USERNAME", unique = true)
+        @Index(name = "IDX_USER__ON_USERNAME", columnList = "USERNAME", unique = true),
+        @Index(name = "IDX_USER_ACTIVATION_TOKEN", columnList = "ACTIVATION_TOKEN", unique = true)
 })
 public class User implements JmixUserDetails {
 
@@ -53,8 +54,30 @@ public class User implements JmixUserDetails {
     @Column(name = "ADDRESS")
     private String address;
 
+    @Column(name = "NEEDS_ACTIVATION")
+    private Boolean needsActivation;
+
+    @Column(name = "ACTIVATION_TOKEN")
+    private String activationToken;
+
     @Transient
     protected Collection<? extends GrantedAuthority> authorities;
+
+    public String getActivationToken() {
+        return activationToken;
+    }
+
+    public void setActivationToken(String activationToken) {
+        this.activationToken = activationToken;
+    }
+
+    public Boolean getNeedsActivation() {
+        return needsActivation;
+    }
+
+    public void setNeedsActivation(Boolean needsActivation) {
+        this.needsActivation = needsActivation;
+    }
 
     public String getAddress() {
         return address;

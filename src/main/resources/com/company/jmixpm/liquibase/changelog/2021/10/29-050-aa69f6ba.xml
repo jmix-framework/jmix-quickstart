@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="jmix-pm-security-advanced">
+        <addColumn tableName="USER_">
+            <column name="ACTIVATION_TOKEN" type="VARCHAR(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="2" author="jmix-pm-security-advanced">
+        <createIndex indexName="IDX_USER_ACTIVATION_TOKEN" tableName="USER_" unique="true">
+            <column name="ACTIVATION_TOKEN"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>

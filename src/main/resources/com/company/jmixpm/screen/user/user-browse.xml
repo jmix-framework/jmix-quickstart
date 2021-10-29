@@ -54,6 +54,7 @@
                 <column id="email"/>
                 <column id="active"/>
                 <column id="address"/>
+                <column id="needsActivation"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
