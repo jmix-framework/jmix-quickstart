@@ -4,24 +4,35 @@ import com.company.jmixpm.entity.User;
 import com.company.jmixpm.security.CombinedManagerRole;
 import com.company.jmixpm.security.RestrictedDocumentsRole;
 import com.company.jmixpm.security.RestrictedProjectsRole;
+import io.jmix.core.DataManager;
+import io.jmix.core.TimeSource;
 import io.jmix.core.UnconstrainedDataManager;
+import io.jmix.core.security.SystemAuthenticator;
 import io.jmix.email.EmailException;
 import io.jmix.email.EmailInfo;
 import io.jmix.email.EmailInfoBuilder;
 import io.jmix.email.Emailer;
 import io.jmix.security.role.assignment.RoleAssignmentRoleType;
 import io.jmix.securitydata.entity.RoleAssignmentEntity;
+import org.apache.commons.lang3.time.DateUtils;
+import org.quartz.Job;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Component
-public class RegistrationService {
+public class RegistrationService implements Job {
+    private static final Logger log = LoggerFactory.getLogger(RegistrationService.class);
 
     @Autowired
     private UnconstrainedDataManager unconstrainedDataManager;
@@ -29,6 +40,12 @@ public class RegistrationService {
     private Emailer emailer;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private DataManager dataManager;
+    @Autowired
+    private TimeSource timeSource;
+    @Autowired
+    private SystemAuthenticator systemAuthenticator;
 
     /**
      * @return true if user with this email (or login) already exists.
@@ -133,5 +150,24 @@ public class RegistrationService {
         roleAssignmentEntity.setUsername(user.getUsername());
         roleAssignmentEntity.setRoleType(roleType);
         return roleAssignmentEntity;
+    }
+
+    public String deleteOldNotActivatedUsers() {
+        Date threshold = DateUtils.addDays(timeSource.currentTimestamp(), -7);
+        List<User> oldUsers = dataManager.load(User.class)
+                .query("select u from User u where u.createdDate < :threshold and u.needsActivation = true")
+                .parameter("threshold", threshold)
+                .list();
+        for (User u: oldUsers) {
+            dataManager.remove(u);
+            log.info("Removing old not activated user " + u.getUsername());
+        }
+        return "Deleted " + oldUsers.size() + " users";
+    }
+
+    @Override
+    public void execute(JobExecutionContext context) throws JobExecutionException {
+        String result = systemAuthenticator.withSystem(this::deleteOldNotActivatedUsers);
+        context.setResult(result);
     }
 }
