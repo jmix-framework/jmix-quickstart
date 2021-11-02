@@ -17,6 +17,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
@@ -117,6 +118,12 @@ public class LoginScreen extends Screen {
             notifications.create(Notifications.NotificationType.ERROR)
                     .withCaption(messages.getMessage(getClass(), "loginFailed"))
                     .withDescription(messages.getMessage(getClass(), "badCredentials"))
+                    .show();
+        } catch (AccountExpiredException e) {
+            log.debug("Account expired", e);
+            notifications.create(Notifications.NotificationType.ERROR)
+                    .withCaption(messages.getMessage(getClass(), "loginFailed"))
+                    .withDescription(e.getMessage())
                     .show();
         }
     }
