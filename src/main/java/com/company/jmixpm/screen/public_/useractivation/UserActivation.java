@@ -3,6 +3,11 @@ package com.company.jmixpm.screen.public_.useractivation;
 import com.company.jmixpm.app.RegistrationService;
 import com.company.jmixpm.entity.User;
 import com.company.jmixpm.screen.login.LoginScreen;
+import com.company.jmixpm.screen.main.MainScreen;
+import com.vaadin.server.VaadinServletRequest;
+import com.vaadin.server.VaadinServletResponse;
+import io.jmix.core.security.SecurityContextHelper;
+import io.jmix.core.security.SystemAuthenticationToken;
 import io.jmix.securityui.authentication.AuthDetails;
 import io.jmix.securityui.authentication.LoginScreenSupport;
 import io.jmix.ui.Notifications;
@@ -15,7 +20,10 @@ import io.micrometer.core.instrument.util.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
 @UiController("UserActivation")
 @UiDescriptor("user-activation.xml")
@@ -48,6 +56,11 @@ public class UserActivation extends Screen {
     private ScreenBuilders screenBuilders;
     @Autowired
     private LinkButton returnToLoginScreen;
+
+    @Autowired
+    protected AuthenticationManager authenticationManager;
+    @Autowired
+    protected SessionAuthenticationStrategy sessionAuthenticationStrategy;
 
     private User user;
     private boolean initialized = false;
@@ -98,6 +111,12 @@ public class UserActivation extends Screen {
         String password = passwordField.getValue();
         registrationService.activateUser(user, password);
 
+        //loginByPassword(password);
+
+        loginAsTrusted();
+    }
+
+    private void loginByPassword(String password) {
         try {
             // also redirects to main screen
             loginScreenSupport.authenticate(AuthDetails.of(user.getUsername(), password), this);
@@ -107,6 +126,26 @@ public class UserActivation extends Screen {
                     .withDescription("Activation failed")
                     .show();
         }
+    }
+
+    // mostly copied from io.jmix.securityui.authentication.LoginScreenSupport
+    private void loginAsTrusted() {
+        log.info("Login without password");
+        SystemAuthenticationToken token = new SystemAuthenticationToken(user.getUsername());
+        Authentication authentication = authenticationManager.authenticate(token);
+
+        VaadinServletRequest request = VaadinServletRequest.getCurrent();
+        VaadinServletResponse response = VaadinServletResponse.getCurrent();
+
+        sessionAuthenticationStrategy.onAuthentication(authentication, request, response);
+
+        SecurityContextHelper.setAuthentication(authentication);
+
+        screenBuilders.screen(this)
+                .withScreenClass(MainScreen.class)
+                .withOpenMode(OpenMode.ROOT)
+                .build()
+                .show();
     }
 
     public boolean validateFields() {
