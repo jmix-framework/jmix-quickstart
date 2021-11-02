@@ -1,15 +1,15 @@
 package com.company.jmixpm;
 
-import com.company.jmixpm.app.RegistrationService;
+import com.company.jmixpm.app.RegistrationCleaner;
 import com.google.common.base.Strings;
 import org.quartz.*;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.event.EventListener;
@@ -52,7 +52,7 @@ public class JmixPmApplication {
 	@Bean
 	public JobDetail removeOldUsersJob() {
 		return JobBuilder.newJob()
-				.ofType(RegistrationService.class)
+				.ofType(RegistrationCleaner.class)
 				.storeDurably()
 				.withIdentity("registration")
 				.build();
