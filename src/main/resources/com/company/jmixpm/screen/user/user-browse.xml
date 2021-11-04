@@ -57,6 +57,7 @@
                 <column id="address"/>
                 <column id="needsActivation"/>
                 <column id="expiryDate"/>
+                <column id="telephoneNumber"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

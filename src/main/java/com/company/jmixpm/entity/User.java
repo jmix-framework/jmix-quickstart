@@ -76,8 +76,19 @@ public class User implements JmixUserDetails {
     @Column(name = "EXPIRY_DATE")
     private LocalDate expiryDate;
 
+    @Column(name = "TELEPHONE_NUMBER")
+    private String telephoneNumber;
+
     @Transient
     protected Collection<? extends GrantedAuthority> authorities;
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
+    }
 
     public LocalDate getExpiryDate() {
         return expiryDate;

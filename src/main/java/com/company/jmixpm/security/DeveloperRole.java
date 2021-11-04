@@ -13,8 +13,10 @@ import io.jmix.securityui.role.UiMinimalRole;
 import io.jmix.securityui.role.annotation.MenuPolicy;
 import io.jmix.securityui.role.annotation.ScreenPolicy;
 
-@ResourceRole(name = "Developer", code = "developer", scope = "UI")
+@ResourceRole(name = "Developer", code = DeveloperRole.CODE, scope = "UI")
 public interface DeveloperRole extends UiMinimalRole {
+    String CODE = "developer";
+
     @MenuPolicy(menuIds = {"Task_.browse", "MyNotifications", "TimeEntry.browse"})
     @ScreenPolicy(screenIds = {"Task_.browse", "MyNotifications", "TimeEntry.browse", "QuickAddTimeEntry", "TimeEntry.edit", "Task_.edit", "User.browse"}, screenClasses = {})
     void screens();

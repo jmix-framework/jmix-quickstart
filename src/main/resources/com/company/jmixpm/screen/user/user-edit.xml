@@ -42,6 +42,7 @@
                 <checkBox id="activeField" property="active"/>
                 <textField id="addressField" property="address"/>
                 <dateField id="expiryDateField" property="expiryDate"/>
+                <textField id="telephoneNumberField" property="telephoneNumber"/>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

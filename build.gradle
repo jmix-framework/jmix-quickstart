@@ -44,6 +44,7 @@ dependencies {
     implementation("io.jmix.email:jmix-email-starter")
     implementation("io.jmix.email:jmix-email-ui-starter")
     implementation 'org.springframework.boot:spring-boot-starter-quartz'
+    implementation("io.jmix.ldap:jmix-ldap-starter")
 }
 
 test {
