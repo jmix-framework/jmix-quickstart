@@ -29,10 +29,10 @@ public interface ProjectManagementRole {
     @EntityPolicy(entityClass = User.class, actions = {EntityPolicyAction.READ, EntityPolicyAction.UPDATE})
     void user();
 
-    @ScreenPolicy(screenIds = {"User.browse", "Project.browse", "Task_.browse", "Document.browse", "Document.edit", "Project.edit", "Task_.edit", "User.edit", "MyNotifications"}, screenClasses = {})
+    @ScreenPolicy(screenIds = {"User.browse", "Project.browse", "Task_.browse", "Document.browse", "Document.edit", "Project.edit", "Task_.edit", "User.edit", "MyNotifications", "TimeEntry.browse", "TimeEntry.edit", "QuickAddTimeEntry"}, screenClasses = {})
     void screens();
 
-    @MenuPolicy(menuIds = {"application", "Project.browse", "Task_.browse", "Document.browse", "User.browse", "MyNotifications"})
+    @MenuPolicy(menuIds = {"application", "Project.browse", "Task_.browse", "Document.browse", "User.browse", "MyNotifications", "TimeEntry.browse"})
     void commonMenus();
 
     @SpecificPolicy(resources = "pm.projects.archive")
@@ -41,4 +41,8 @@ public interface ProjectManagementRole {
     @EntityAttributePolicy(entityClass = Notification.class, attributes = "*", action = EntityAttributePolicyAction.VIEW)
     @EntityPolicy(entityClass = Notification.class, actions = EntityPolicyAction.READ)
     void notification();
+
+    @EntityAttributePolicy(entityClass = TimeEntry.class, attributes = "*", action = EntityAttributePolicyAction.MODIFY)
+    @EntityPolicy(entityClass = TimeEntry.class, actions = EntityPolicyAction.ALL)
+    void timeEntry();
 }

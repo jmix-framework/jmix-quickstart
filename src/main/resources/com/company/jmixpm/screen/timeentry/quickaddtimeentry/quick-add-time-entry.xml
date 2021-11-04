@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://quickAddTimeEntryDialog.caption">
+    <data>
+        <instance id="timeEntryDc" class="com.company.jmixpm.entity.TimeEntry">
+            <fetchPlan extends="_base">
+                <property name="task" fetchPlan="_base"/>
+                <property name="assignee" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="timeEntryDl"/>
+        </instance>
+    </data>
+    <dialogMode forceDialog="true" width="auto" height="auto"/>
+    <layout>
+        <form id="timeEntryForm" childrenCaptionWidth="AUTO" dataContainer="timeEntryDc">
+            <column width="350px">
+                <entityPicker id="taskField" property="task">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+                <entityPicker id="assigneeField" property="assignee">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+                <dateField id="entryDateField" property="entryDate"/>
+                <textField id="timeSpentField" property="timeSpent"/>
+                <textArea id="descriptionField" property="description" rows="5"/>
+            </column>
+        </form>
+        <button id="saveBtn" caption="msg://saveBtn.caption" icon="SAVE"/>
+    </layout>
+</window>

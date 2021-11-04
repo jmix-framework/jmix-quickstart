@@ -45,6 +45,7 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
+                <action id="addSpentTime" caption="msg://addSpentTime.caption" trackSelection="true" icon="CLOCK_O"/>
             </actions>
             <columns>
                 <column id="name"/>
@@ -59,6 +60,7 @@
                 <button id="createBtn" action="tasksTable.create"/>
                 <button id="editBtn" action="tasksTable.edit"/>
                 <button id="removeBtn" action="tasksTable.remove"/>
+                <button id="tasksTableAddSpentTimeBtn" action="tasksTable.addSpentTime"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">
