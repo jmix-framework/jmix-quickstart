@@ -11,6 +11,8 @@
               caption="msg://com.company.jmixpm.screen.notification/notificationBrowse.caption"/>
         <item screen="MyNotifications"
               caption="msg://com.company.jmixpm.screen.mynotifications/myNotifications.caption"/>
+        <item screen="TimeEntry.browse" caption="msg://com.company.jmixpm.screen.timeentry/timeEntryBrowse.menu"/>
+        <item screen="ProjectStat.browse" caption="msg://com.company.jmixpm.screen.projectstat/projectStatBrowse.menu"/>
     </menu>
 
 </menu-config>
