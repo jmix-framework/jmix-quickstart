@@ -16,9 +16,10 @@ public class LdapAuthoritiesMapper {
     @Autowired
     private JmixLdapGrantedAuthoritiesMapper grantedAuthoritiesMapper;
 
+    private final Map<String, String> authorityMap = new HashMap<>();
+
     @PostConstruct
     public void postConstruct() {
-        Map<String, String> authorityMap = new HashMap<>();
         authorityMap.put("admin", FullAccessRole.CODE);
         authorityMap.put("managers", CombinedManagerRole.CODE);
         authorityMap.put("developers", DeveloperRole.CODE);
@@ -27,6 +28,10 @@ public class LdapAuthoritiesMapper {
 //        authorityMap.put("Chemists", CombinedManagerRole.CODE);
 //        authorityMap.put("Mathematicians", DeveloperRole.CODE);
 
-        grantedAuthoritiesMapper.setAuthorityToRoleCodeMapper(s -> authorityMap.getOrDefault(s, s));
+        grantedAuthoritiesMapper.setAuthorityToRoleCodeMapper(this::mapAuthorityToRoleCode);
+    }
+
+    public String mapAuthorityToRoleCode(String authority) {
+        return authorityMap.getOrDefault(authority, authority);
     }
 }
