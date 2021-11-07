@@ -19,7 +19,7 @@ public class ProjectEdit extends StandardEditor<Project> {
     @Subscribe
     public void onInitEntity(InitEntityEvent<Project> event) {
         User user = (User) currentAuthentication.getUser();
-        // todo delete when jmix bug is fixed
+        // reload before assigning to entity
         user = dataManager.load(User.class).id(user.getId()).one();
 
         event.getEntity().setManager(user);
