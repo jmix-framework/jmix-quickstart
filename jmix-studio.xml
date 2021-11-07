@@ -25,11 +25,7 @@
             <map>
               <entry key="main">
                 <value>
-                  <DataStoreSettings>
-                    <option name="supportedTypes">
-                      <option value="hsql" />
-                    </option>
-                  </DataStoreSettings>
+                  <DataStoreSettings />
                 </value>
               </entry>
             </map>

@@ -6,7 +6,6 @@ import io.jmix.security.model.EntityPolicyAction;
 import io.jmix.security.role.annotation.EntityAttributePolicy;
 import io.jmix.security.role.annotation.EntityPolicy;
 import io.jmix.security.role.annotation.ResourceRole;
-import io.jmix.security.role.annotation.SpecificPolicy;
 import io.jmix.securityui.role.annotation.MenuPolicy;
 import io.jmix.securityui.role.annotation.ScreenPolicy;
 
@@ -34,9 +33,6 @@ public interface ProjectManagementRole {
 
     @MenuPolicy(menuIds = {"application", "Project.browse", "Task_.browse", "Document.browse", "User.browse", "MyNotifications", "TimeEntry.browse"})
     void commonMenus();
-
-    @SpecificPolicy(resources = "pm.projects.archive")
-    void specify();
 
     @EntityAttributePolicy(entityClass = Notification.class, attributes = "*", action = EntityAttributePolicyAction.VIEW)
     @EntityPolicy(entityClass = Notification.class, actions = EntityPolicyAction.READ)
