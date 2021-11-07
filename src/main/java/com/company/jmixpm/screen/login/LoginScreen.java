@@ -116,12 +116,6 @@ public class LoginScreen extends Screen {
                     .withCaption(messages.getMessage(getClass(), "loginFailed"))
                     .withDescription(messages.getMessage(getClass(), "badCredentials"))
                     .show();
-        } catch (AccountExpiredException e) {
-            log.debug("Account expired", e);
-            notifications.create(Notifications.NotificationType.ERROR)
-                    .withCaption(messages.getMessage(getClass(), "loginFailed"))
-                    .withDescription(e.getMessage())
-                    .show();
         }
     }
 
