@@ -1,19 +1,16 @@
 package com.company.jmixpm.screen.task;
 
+import com.company.jmixpm.entity.Task;
 import com.company.jmixpm.screen.timeentry.quickaddtimeentry.QuickAddTimeEntryDialog;
 import io.jmix.ui.ScreenBuilders;
 import io.jmix.ui.action.Action;
-import io.jmix.ui.builder.ScreenClassBuilder;
 import io.jmix.ui.component.GroupTable;
-import io.jmix.ui.navigation.Route;
 import io.jmix.ui.screen.*;
-import com.company.jmixpm.entity.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @UiController("Task_.browse")
 @UiDescriptor("task-browse.xml")
 @LookupComponent("tasksTable")
-@Route("tasks")
 public class TaskBrowse extends StandardLookup<Task> {
     @Autowired
     private ScreenBuilders screenBuilders;

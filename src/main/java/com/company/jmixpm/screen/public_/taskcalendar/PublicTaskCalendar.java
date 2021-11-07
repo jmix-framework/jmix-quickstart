@@ -16,7 +16,6 @@ import org.springframework.context.event.EventListener;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Route(value = "task-calendar", root = true)
 @UiController("PublicTaskCalendar")
 @UiDescriptor("public-task-calendar.xml")
 public class PublicTaskCalendar extends Screen {
