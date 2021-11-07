@@ -27,7 +27,6 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 
 @UiController("UserActivation")
 @UiDescriptor("user-activation.xml")
-@Route(value = "activate", root = true)
 public class UserActivation extends Screen {
 
     private static final Logger log = LoggerFactory.getLogger(UserActivation.class);
@@ -117,22 +116,15 @@ public class UserActivation extends Screen {
     }
 
     private void loginByPassword(String password) {
-        try {
-            // also redirects to main screen
-            loginScreenSupport.authenticate(AuthDetails.of(user.getUsername(), password), this);
-        } catch (AuthenticationException e) {
-            log.info("Login failed", e);
-            notifications.create(Notifications.NotificationType.ERROR)
-                    .withDescription("Activation failed")
-                    .show();
-        }
+        // todo login with password
     }
 
     // mostly copied from io.jmix.securityui.authentication.LoginScreenSupport
     private void loginAsTrusted() {
         log.info("Login without password");
-        SystemAuthenticationToken token = new SystemAuthenticationToken(user.getUsername());
-        Authentication authentication = authenticationManager.authenticate(token);
+
+        // todo login without password
+        Authentication authentication = null;
 
         VaadinServletRequest request = VaadinServletRequest.getCurrent();
         VaadinServletResponse response = VaadinServletResponse.getCurrent();

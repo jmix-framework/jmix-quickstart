@@ -57,9 +57,6 @@ public class LoginScreen extends Screen {
     private UiLoginProperties loginProperties;
 
     @Autowired
-    private ScreenBuilders screenBuilders;
-
-    @Autowired
     private JmixApp app;
 
     private final Logger log = LoggerFactory.getLogger(LoginScreen.class);
@@ -130,10 +127,6 @@ public class LoginScreen extends Screen {
 
     @Subscribe("registerButton")
     public void onRegisterButtonClick(Button.ClickEvent event) {
-        screenBuilders.screen(this)
-                .withScreenClass(UserRegistration.class)
-                .withOpenMode(OpenMode.ROOT)
-                .build()
-                .show();
+        // todo go to registration screen
     }
 }

@@ -2,13 +2,13 @@ package com.company.jmixpm.screen.public_.register;
 
 import com.company.jmixpm.app.RegistrationService;
 import com.company.jmixpm.entity.User;
-import com.company.jmixpm.screen.login.LoginScreen;
 import io.jmix.email.EmailException;
 import io.jmix.ui.Notifications;
-import io.jmix.ui.ScreenBuilders;
 import io.jmix.ui.action.Action;
-import io.jmix.ui.component.*;
-import io.jmix.ui.navigation.Route;
+import io.jmix.ui.component.Button;
+import io.jmix.ui.component.Form;
+import io.jmix.ui.component.TextField;
+import io.jmix.ui.component.ValidationErrors;
 import io.jmix.ui.screen.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,11 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @UiController("UserRegistration")
 @UiDescriptor("user-registration.xml")
-@Route(value = "register", root = true)
 public class UserRegistration extends Screen {
 
-    @Autowired
-    private ScreenBuilders screenBuilders;
     @Autowired
     private ScreenValidation screenValidation;
     @Autowired
@@ -36,20 +33,13 @@ public class UserRegistration extends Screen {
     @Autowired
     private Notifications notifications;
     @Autowired
-    private VBoxLayout loginForm;
-    @Autowired
     private Button registerButton;
 
     private static final Logger log = LoggerFactory.getLogger(UserRegistration.class);
 
-
     @Subscribe("backToLogin")
     public void onBackToLoginClick(Button.ClickEvent event) {
-        screenBuilders.screen(this)
-                .withScreenClass(LoginScreen.class)
-                .withOpenMode(OpenMode.ROOT)
-                .build()
-                .show();
+        // todo go to login screen
     }
 
     @Subscribe("register")
