@@ -48,22 +48,4 @@ public class JmixPmApplication {
 				+ environment.getProperty("local.server.port")
 				+ Strings.nullToEmpty(environment.getProperty("server.servlet.context-path")));
 	}
-
-	@Bean
-	public JobDetail removeOldUsersJob() {
-		return JobBuilder.newJob()
-				.ofType(RegistrationCleaner.class)
-				.storeDurably()
-				.withIdentity("registration")
-				.build();
-	}
-
-	@Bean
-	public Trigger removeOldUsersTrigger() {
-		return TriggerBuilder.newTrigger()
-				.forJob(removeOldUsersJob())
-				.startNow()
-				.withSchedule(CronScheduleBuilder.cronSchedule("0 * * * * ?"))
-				.build();
-	}
 }

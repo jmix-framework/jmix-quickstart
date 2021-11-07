@@ -17,15 +17,13 @@ import java.util.Date;
 import java.util.List;
 
 @Component
-public class RegistrationCleaner implements Job {
+public class RegistrationCleaner {
     private static final Logger log = LoggerFactory.getLogger(RegistrationCleaner.class);
 
     @Autowired
     private DataManager dataManager;
     @Autowired
     private TimeSource timeSource;
-    @Autowired
-    private SystemAuthenticator systemAuthenticator;
 
     public String deleteOldNotActivatedUsers() {
         Date threshold = DateUtils.addDays(timeSource.currentTimestamp(), -7);
@@ -39,11 +37,4 @@ public class RegistrationCleaner implements Job {
         }
         return "Deleted " + oldUsers.size() + " users";
     }
-
-    @Override
-    public void execute(JobExecutionContext context) throws JobExecutionException {
-        String result = systemAuthenticator.withSystem(this::deleteOldNotActivatedUsers);
-        context.setResult(result);
-    }
-
 }
