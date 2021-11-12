@@ -1,6 +1,7 @@
 plugins {
     id 'io.jmix' version '1.0.0'
     id 'java'
+    id 'org.gauge' version '1.8.0'
 }
 
 apply plugin: 'org.springframework.boot'
